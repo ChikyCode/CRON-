@@ -28,3 +28,7 @@ restart cron services  : sudo /etc/init.d/cron restart
 -------------------------------------------------------
 
 sudo service cron status
+
+
+
+bq load Test.impnew gs://test_shabi/C1.csv productid,ListingCount,PDPCount,CreatedDate > /home/shabi_victor/log/`date +\%Y\%m\%d\%H\%M\%S`-load_bq.log 2>&1
