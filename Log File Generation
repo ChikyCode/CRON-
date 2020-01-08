@@ -1,0 +1,17 @@
+-------------------------------------------------------------------------------------------------------
+#!/bin/bash
+bq load Test.impnew gs://test_shabi/C1.csv productid,ListingCount,PDPCount,CreatedDate
+if [ $? -eq 0 ]
+then
+        echo 'success' >> /home/shabi_victor/log/`date +\%Y\%m\%d`-fcdatalake_Test_impressiondata_Load.log 2>&1
+else 
+        echo 'failed'  >> /home/shabi_victor/log/`date +\%Y\%m\%d`-fcdatalake_Test_impressiondata_Load.log 2>&1
+fi
+-------------------------------------------------------------------------------------------------------
+
+bq load Test.impnew gs://test_shabi/C1.csv productid,ListingCount,PDPCount,CreatedDate > /home/shabi_victor/log/`date +\%Y\%m\%d\%H\%M\%S`-fcdatalake_Test_impressiondata_Load 2>&1
+bq load Test.impnew gs://test_shabi/C1.csv productid,ListingCount,PDPCount,CreatedDate > /home/shabi_victor/log/`date +\%Y\%m\%d`-fcdatalake_Test_impressiondata_Load.log 2>&1
+
+bq load Test.impnew gs://test_shabi/C1.csv productid,ListingCount,PDPCount,Createddate > /home/shabi_victor/log/`date +\%Y\%m\%d\%H\%M\%S`-fcdatalake_Test_impressiondata_Load.log 2>&1
+
+gsutil del gs://test_shabi/C1.csv > /home/shabi_victor/log/`date +\%Y\%m\%d\%H\%M\%S`-fcdatalake_Test_impressiondata_DropTable 2>&1
